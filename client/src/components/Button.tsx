@@ -1,10 +1,9 @@
 import React from "react";
 
-type ButtonProps = {
-   children: string;
+type ButtonProps = React.PropsWithChildren<{
    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
    disabled?: boolean;
-};
+}>;
 
 export const Button = ({
    onClick,

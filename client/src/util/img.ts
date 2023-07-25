@@ -2,9 +2,14 @@ export const dataUrlToFile = async (
    dataUrl: string,
    fileName: string = "image"
 ): Promise<File> => {
-   const res: Response = await fetch(dataUrl);
-   const blob: Blob = await res.blob();
-   return new File([blob], fileName, { type: "image/png" });
+   try {
+      const res: Response = await fetch(dataUrl);
+      const blob: Blob = await res.blob();
+      return new File([blob], fileName, { type: "image/png" });
+   } catch (error) {
+      console.error("Error converting data URL to File:", error);
+      throw error;
+   }
 };
 
 export async function convertImportedImageToBase64(importedImage: string) {
@@ -17,7 +22,7 @@ export async function convertImportedImageToBase64(importedImage: string) {
       return base64String;
    } catch (error) {
       console.error("Error converting imported image to base64:", error);
-      return null;
+      throw error;
    }
 }
 
@@ -48,10 +53,15 @@ export function downloadImage(src: string, filename: string = "maskedphoto") {
       canvas.height = img.height;
       if (ctx) {
          ctx.drawImage(img, 0, 0);
-         const a = document.createElement("a");
-         a.download = filename + ".png";
-         a.href = canvas.toDataURL("image/png");
-         a.click();
+         try {
+            const a = document.createElement("a");
+            a.download = filename + ".png";
+            a.href = canvas.toDataURL("image/png");
+            a.click();
+         } catch (error) {
+            console.error("Error downloading the image:", error);
+            throw error;
+         }
       }
    };
 }

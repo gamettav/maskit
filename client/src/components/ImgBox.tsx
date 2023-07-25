@@ -1,8 +1,4 @@
-type ImgBoxProps = {
-   children: string | JSX.Element | JSX.Element[];
-};
-
-export const ImgBox = ({ children }: ImgBoxProps) => {
+export const ImgBox = ({ children }: React.PropsWithChildren) => {
    return (
       <div
          style={{
