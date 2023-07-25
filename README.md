@@ -14,7 +14,7 @@ The application is organized into two main folders:
 1. Clone the repository to your local machine:
 
 ```bash
-https://github.com/gamettav/maskit.git
+git clone https://github.com/gamettav/maskit.git
 ```
 
 2. Navigate to the project directory:
