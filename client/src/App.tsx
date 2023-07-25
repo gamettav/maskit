@@ -13,9 +13,9 @@ import { SocketContext } from "./api/socket";
 const masks = import.meta.glob("../public/masks/*");
 
 function App() {
-   const webcamRef = useRef<Webcam>(null);
    const socket = useContext(SocketContext);
-   const [isConnected, setIsConnected] = useState(false);
+   const webcamRef = useRef<Webcam>(null);
+   const [isConnected, setIsConnected] = useState<boolean>(false);
    const [isCaptureEnable, setCaptureEnable] = useState<boolean>(false);
    const [imgSrc, setImgSrc] = useState<string | null>(null);
    const [maskSrc, setMaskSrc] = useState<string | null>(null);
@@ -24,8 +24,8 @@ function App() {
       if (maskSrc && imageSrc) {
          const maskImg = await convertImportedImageToBase64(maskSrc);
          socket.emit("send_img", {
-            img: imageSrc,
-            mask: maskImg,
+            captureDataURL: imageSrc,
+            maskDataURL: maskImg,
          });
       }
    };
@@ -42,10 +42,10 @@ function App() {
    };
 
    useEffect(() => {
-      function imgSetter({ img }: { img: string }) {
-         setImgSrc(img);
+      function imgSetter({ captureDataURL }: { captureDataURL: string }) {
+         setImgSrc(captureDataURL);
       }
-      socket.on("receive_img", imgSetter);
+      socket.on("receive_img", imgSetter); // TODO: move evt names to const
       return () => {
          socket.off("receive_img", imgSetter);
       };
@@ -85,7 +85,9 @@ function App() {
                />
                <Button
                   onClick={captureImgHandler}
-                  disabled={Boolean(!maskSrc) || !isCaptureEnable}
+                  disabled={
+                     Boolean(!maskSrc) || !isCaptureEnable || !isConnected
+                  }
                >
                   Capture and add mask
                </Button>

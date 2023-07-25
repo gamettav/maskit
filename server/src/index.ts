@@ -43,10 +43,10 @@ io.on("connection", (socket) => {
    console.log(`Connected: ${socket.id}`);
 
    socket.on("send_img", async (data) => {
-      const maskedImg = await maskImg(data.img, data.mask);
+      const maskedImg = await maskImg(data.captureDataURL, data.maskDataURL);
       if (maskedImg)
          socket.emit("receive_img", {
-            img: base64PrefixStr + maskedImg,
+            captureDataURL: base64PrefixStr + maskedImg,
          });
    });
 });
