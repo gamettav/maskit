@@ -130,7 +130,7 @@ function App() {
                      <img src={imgSrc} />
                   ) : (
                      <Placeholder
-                        color="green-600"
+                        bgColor="bg-green-600"
                         label="Masked photo will appear here"
                      />
                   )}
