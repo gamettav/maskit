@@ -19,10 +19,7 @@ function App() {
    const [maskSrc, setMaskSrc] = useState<string | null>(null);
 
    const captureButtonDisabled =
-      Boolean(!maskSrc) ||
-      Boolean(imgError) ||
-      !isCaptureEnable ||
-      !isConnected;
+      Boolean(!maskSrc) || !isCaptureEnable || !isConnected;
 
    const sendMessage = useCallback(
       async (imageSrc: string) => {
@@ -58,9 +55,11 @@ function App() {
 
    useEffect(() => {
       function imgSetter({ captureDataURL }: { captureDataURL: string }) {
+         setImageError(null);
          setImgSrc(captureDataURL);
       }
       function imgErrorSetter({ error }: { error: string }) {
+         setImgSrc(null);
          setImageError(error);
       }
 
@@ -89,7 +88,7 @@ function App() {
          socket.off("disconnect", onDisconnect);
       };
    }, [socket]);
-
+   // TODO: add i18n
    return (
       <>
          <Connection isConnected={isConnected} />

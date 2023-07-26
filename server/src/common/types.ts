@@ -1,12 +1,12 @@
 export type FaceBox = {
-   x: number;
-   y: number;
-   width: number;
-   height: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
 };
 
 export type MaskImg = {
-   captureDataURL: string;
-   maskDataURL: string;
-   faceBoxList: FaceBox[];
+    captureDataURL: string;
+    maskDataURL: string;
+    faceBoxList: FaceBox[];
 };
