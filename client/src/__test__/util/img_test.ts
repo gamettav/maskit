@@ -1,4 +1,4 @@
-import { convertImportedImageToBase64 } from "../util/img";
+import { convertImportedImageToBase64 } from "@/util/img";
 import mask1 from "../public/masks/mask1.png";
 
 test("convertImportedImageToBase64 should return the correct base64 string", async () => {

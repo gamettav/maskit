@@ -13,12 +13,6 @@ export const ErrorTag = ({ errorMessage }: ErrorTagprops) => {
       }
 
       setVisible(true);
-
-      //   const timer = setTimeout(() => {
-      //      setVisible(false);
-      //   }, 3000);
-
-      //   return () => clearTimeout(timer);
    }, [errorMessage]);
 
    return (

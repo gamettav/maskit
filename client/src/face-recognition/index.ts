@@ -31,11 +31,6 @@ const detect = async (model: BlazeFaceModel, webcamRef: RefObject<Webcam>) => {
          webcamRef.current.video.readyState === 4
       ) {
          const video = webcamRef.current.video;
-         const videoWidth = webcamRef.current.video.videoWidth;
-         const videoHeight = webcamRef.current.video.videoHeight;
-
-         webcamRef.current.video.width = videoWidth;
-         webcamRef.current.video.height = videoHeight;
 
          const prediction = await model.estimateFaces(video, false);
          return prediction;
@@ -48,7 +43,7 @@ const detect = async (model: BlazeFaceModel, webcamRef: RefObject<Webcam>) => {
 
 const calcFaceBox = (faceBoxList: NormalizedFace[]) => {
    try {
-      const SCALE_DOWN = 0.6;
+      const SCALE_DOWN = 0.7;
       if (faceBoxList.length > 0) {
          return faceBoxList.map((faceBox) => {
             const start = faceBox.topLeft as [number, number];
