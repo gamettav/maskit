@@ -27,10 +27,10 @@ cd maskit
 
 ```bash
 cd client
-npm install
+yarn
 
 cd server
-npm install
+yarn
 ```
 
 ## Running the App
@@ -39,14 +39,14 @@ npm install
 
 ```bash
 cd server
-npm run start
+yarn run start
 ```
 
 2. Start the client:
 
 ```bash
 cd client
-npm run dev
+yarn run dev
 ```
 
 The client will be available at http://localhost:3000, and the server will run on http://localhost:3001.
