@@ -71,13 +71,13 @@ The client will be available at http://localhost:3000, and the server will run o
 
 -  React
 -  Socket.IO
+-  tensorflow-models (for face detection)
 
 ### Server-Side:
 
 -  Node.js
 -  Socket.IO
 -  Jimp (for image processing and overlaying the mask)
--  face-api.js (for face detection)
 
 ## License
 
